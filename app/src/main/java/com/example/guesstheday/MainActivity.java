@@ -14,6 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int id = radiogrp.getCheckedRadioButtonId();
+                if(id == -1){
+                    toastmsg("please choose an option");
+                }
+                else{
                 RadioButton radioButton = findViewById(id);
                 String ans = String.valueOf(radioButton.getText());
                 ConstraintLayout rl = findViewById(R.id.activity_main);
@@ -64,11 +69,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                     })
                 ;}
+                }
             }
         });
     }
         public static int randBetween(int start, int end) {
             return start + (int)Math.round(Math.random() * (end - start));
+        }
+        private void toastmsg(String msg){
+        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
         }
 
     @SuppressLint("SetTextI18n")
